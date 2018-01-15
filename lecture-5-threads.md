@@ -12,3 +12,8 @@ Sometimes a program needs to do multiple things concurrently, and it is much eas
 * Blocked
 * Ready
 * Exited
+
+The state transitions are called:
+* `yield()` goes from running to ready
+* `sleep()` goes from running to blocked
+* `wakeup()` uses another thread to wake up a thread, going from blocked to ready
