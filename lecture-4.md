@@ -94,7 +94,9 @@ Syscalls:
 * `exec()` replaces an address space with a new program. 
 * `exit()` or `kill()` are used for process termination.
 
-Why do this weird thing? Refer to demo!
+Why do this weird thing? Why not create a brand new process instead of copying everything?
+
+This way, we can do something useful before actually running the child - at the spot where we print "Hello I am the Child" in the demo files.
 
 
 
