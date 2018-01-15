@@ -10,5 +10,8 @@ We run multiple programs concurrently because it increases CPU utilization. I/O 
 
 **Time-sharing** (**multitasking**): switching back and forth across processes very quickly - this is called a "**context switch**". The goal is to reduce latency when a user interacts with the computer.
 
-### How does the CPU run Multiple Programs
+### How does the CPU run Multiple Programs?
+The CPU has a Memory Management Unit (**MMU**), mapping citrual addresses to physical addresses. A simple one does **relocation** of virtual to physical addresses and **memory protection** by keeping references within bounds. First is done with a **base register**, the latter with a **limit register**. Each program has its own **base** and **limit** registers.
+
+The 
 
