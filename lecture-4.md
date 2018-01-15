@@ -96,9 +96,8 @@ Syscalls:
 
 Why do this weird thing? Why not create a brand new process instead of copying everything?
 
-This way, we can do something useful before actually running the child - at the spot where we print "Hello I am the Child" in the demo files.
+This way, we can do something useful before actually running the child - at the spot where we print "Hello I am the Child" in the demo files. This useful thing is shown in `p4.c`.
 
-There is an array in UNIX called the **File Descriptor** where all files are stored. The first two indices are ```STDIN``` and `STDOUT`. 
+###`p4.c`
 
-
-
+There is an array for each process in UNIX where all files are stored with unique indices named **file descriptors**. The first two indices are ```STDIN``` and `STDOUT`. When we call ```close(STDOUT_FILENO)```, we essentially close and make the standard output free. Next, we open ```./p4.output``` file, and unix automatically opens it on the first empty field in the . Now, this process will use this file instead of `STDOUT`. 
