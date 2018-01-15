@@ -35,7 +35,7 @@ Set of memory sections accessible to a process. Includes
 * Data \(globals and constants\)
 * Heap \(Dynamically allocated memory\)
 
-The virtual address space of a process:  
+The virtual address space of a process:
 
 |  |
 | :--- |
@@ -48,20 +48,25 @@ The virtual address space of a process:
 Stack and Heap eat into the Gap, until the process is out of memory.
 
 ### Why use the Process Abstraction?
-Allows multiple programs executing in the same physical address space. **Virtualizes the CPU**. 
+
+Allows multiple programs executing in the same physical address space. **Virtualizes the CPU**.
 
 ## Process States
-A process is **running** until either 
-* it is *descheduled*, in which case it becomes **ready**,
-* it *initiates I/O*, in which case it becomes **blocked** while waiting for the result of the I/O. 
 
-A **blocked** process becomes **ready** upon the *I/O completion*, and the **ready** process starts **running** when it is *scheduled*.
+A process is **running** until either
 
-###Process Control Block (PCB)
+* it is _descheduled_, in which case it becomes **ready**,
+* it _initiates I/O_, in which case it becomes **blocked** while waiting for the result of the I/O. 
+
+A **blocked** process becomes **ready** upon the _I/O completion_, and the **ready** process starts **running** when it is _scheduled_.
+
+### Process Control Block \(PCB\)
+
 This is used for saving states in a context switch.
 
 The OS needs to keep track of the following information about a process:
-* State: blocked/ready/running/*zombie*
+
+* State: blocked/ready/running/_zombie_
 * Program counter
 * CPU registers
 * CPU scheduling information
@@ -75,11 +80,17 @@ The time it takes to perform a **context switch** is called **overhead**, and we
 
 ## Syscalls related to process abstraction
 
-**Process creation** requires loading code and static data of a program from the disk into the memory, and creating the address space of the process (including code, static data, heap and stack) in the physical memory.
+**Process creation** requires loading code and static data of a program from the disk into the memory, and creating the address space of the process \(including code, static data, heap and stack\) in the physical memory. You could load it in two ways:
 
-Some useful syscalls: 
+* **lazily**: load it up page by page, in chunks, not all at once
+* **eagerly**: load it up all at once
+
+Some useful syscalls:
 
 * All processes have unique process IDs, retrieved with the `getpid()` syscall.
-* `fork()` syscall copies a process (parent and child) and returns both.
+* `fork()` syscall copies a process \(parent and child\) and returns both.
 * `exec()` replaces an address space with a new program. 
 * `exit()` or `kill()` are used for process termination.
+
+
+
