@@ -16,5 +16,9 @@ The CPU has a Memory Management Unit \(**MMU**\), mapping citrual addresses to p
 
 There are **Page Table Register** which are used when paging is enabled to allow translation by MMU from virtual to physical addresses. To be discussed in a few weeks.
 
+## The Process Abstraction
+**Program** is a passive entity, usually stored in an executable file in a file system, containing instructions and static data values.
+**Process** is a program in execution, or a running program.
 
-
+###What constitutes a process?
+We need to understand its exedctuion 
