@@ -98,7 +98,7 @@ Why do this weird thing? Why not create a brand new process instead of copying e
 
 This way, we can do something useful before actually running the child - at the spot where we print "Hello I am the Child" in the demo files.
 
-
+There is an array in UNIX called the **File Descriptor** where all files are stored. The first two indices are ```STDIN``` and `STDOUT`. 
 
 
 
