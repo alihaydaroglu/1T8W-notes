@@ -18,7 +18,24 @@ There are **Page Table Register** which are used when paging is enabled to allow
 
 ## The Process Abstraction
 **Program** is a passive entity, usually stored in an executable file in a file system, containing instructions and static data values.
+
 **Process** is a program in execution, or a running program.
 
 ###What constitutes a process?
-We need to understand its exedctuion 
+We need to understand its execution context, and what it can read or update. One obvious component is memory: the memory that a process can address is called its **address space**. Other things include registers, PC, SP, I/O info, etc.
+
+####Address Space
+Set of memory sections accessible to a process. Includes
+* Text (program code)
+* Stack (frames)
+* Data (globals and constants)
+* Heap (Dynamically allocated memory)
+
+The virtual address space of a process:
+|==:|
+| Stack |
+| **Gap** |
+| Heap |
+| Data | 
+| Text |
+
