@@ -2,7 +2,7 @@
 
 ## Demos
 
-From [2-intro-code](C:/Users/Ali/Google%20Drive/Engineering%20Science/1T8%20W/ECE353/Lecture%20Notes%20-%20Clean/2-intro-code/intro).
+From [2-intro-code](C:/Users/Ali/Google Drive/Engineering Science/1T8 W/ECE353/Lecture Notes - Clean/2-intro-code/intro).
 
 ### Demo 1 - mem.c and cpu.c
 
@@ -19,7 +19,7 @@ When running threads with numbers above a few hundred, the final value becomes n
 ```c
 void *worker(void *arg) {
 for (int i = 0; i < loops; i++) {
-	counter = counter + 1;
+    counter = counter + 1;
 }
 
 pthread_exit(NULL);
@@ -32,63 +32,14 @@ When dealing with race conditions, the result may or may not be correct. These c
 
 To fix the race condition, the following code uses **mutexes **to fix the issue in threadsv2.c
 
-```
-
-
-void
-*
-worker
-(
-void
-*
-arg
-) {
-
-
-for
- (
-int
-i
-=
-0
-; 
-i
-<
-loops
-; 
-i
-++
-) {
-
-
-Pthread_mutex_lock
-(
-&
-m
-);
-
-
-counter
-++
-;
-
-
-Pthread_mutex_unlock
-(
-&
-m
-);
-
-
+```c
+void *worker(void *arg) {
+for (int i = 0; i < loops; i++) {
+	Pthread_mutex_lock(&m);
+	counter++;
+	Pthread_mutex_unlock(&m);
 }
-
-
-pthread_exit
-(
-NULL
-);
-
-
+pthread_exit(NULL);
 }
 ```
 
@@ -157,9 +108,4 @@ Applications operate in **user mode **with limited access to memory and access t
 Now, the OS is in control!
 
 Something about **kill **and **zombies **for programs that.
-
-  
-
-
-
 
