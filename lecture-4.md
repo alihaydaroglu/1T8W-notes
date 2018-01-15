@@ -85,12 +85,16 @@ The time it takes to perform a **context switch** is called **overhead**, and we
 * **lazily**: load it up page by page, in chunks, not all at once
 * **eagerly**: load it up all at once
 
-Some useful syscalls:
+##The UNIX way of creating and terminating processes
+In UNIX, we create a copy of the **parent** process, which contains almost everything (open files, register values, PC, SP). The only difference is that it is in a brand new address space.
 
+Syscalls:
 * All processes have unique process IDs, retrieved with the `getpid()` syscall.
 * `fork()` syscall copies a process \(parent and child\) and returns both.
 * `exec()` replaces an address space with a new program. 
 * `exit()` or `kill()` are used for process termination.
+
+Why do this weird thing? Refer to demo!
 
 
 
