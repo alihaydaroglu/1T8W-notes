@@ -17,25 +17,69 @@ The CPU has a Memory Management Unit \(**MMU**\), mapping citrual addresses to p
 There are **Page Table Register** which are used when paging is enabled to allow translation by MMU from virtual to physical addresses. To be discussed in a few weeks.
 
 ## The Process Abstraction
+
 **Program** is a passive entity, usually stored in an executable file in a file system, containing instructions and static data values.
 
 **Process** is a program in execution, or a running program.
 
-###What constitutes a process?
+### What constitutes a process?
+
 We need to understand its execution context, and what it can read or update. One obvious component is memory: the memory that a process can address is called its **address space**. Other things include registers, PC, SP, I/O info, etc.
 
-####Address Space
-Set of memory sections accessible to a process. Includes
-* Text (program code)
-* Stack (frames)
-* Data (globals and constants)
-* Heap (Dynamically allocated memory)
+#### Address Space
 
-The virtual address space of a process:
-|==:|
+Set of memory sections accessible to a process. Includes
+
+* Text \(program code\)
+* Stack \(frames\)
+* Data \(globals and constants\)
+* Heap \(Dynamically allocated memory\)
+
+The virtual address space of a process:  
+
+|  |
+| :--- |
 | Stack |
 | **Gap** |
 | Heap |
-| Data | 
+| Data |
 | Text |
 
+Stack and Heap eat into the Gap, until the process is out of memory.
+
+### Why use the Process Abstraction?
+Allows multiple programs executing in the same physical address space. **Virtualizes the CPU**. 
+
+## Process States
+A process is **running** until either 
+* it is *descheduled*, in which case it becomes **ready**,
+* it *initiates I/O*, in which case it becomes **blocked** while waiting for the result of the I/O. 
+
+A **blocked** process becomes **ready** upon the *I/O completion*, and the **ready** process starts **running** when it is *scheduled*.
+
+###Process Control Block (PCB)
+This is used for saving states in a context switch.
+
+The OS needs to keep track of the following information about a process:
+* State: blocked/ready/running/*zombie*
+* Program counter
+* CPU registers
+* CPU scheduling information
+* Memory management information: base and limit registers or page tables
+* Accounting information
+* I/O information: a list of open files
+
+State is saved into PCB upon descheduling, and reloaded from PCB upon scheduling.
+
+The time it takes to perform a **context switch** is called **overhead**, and we want to minimize it.
+
+## Syscalls related to process abstraction
+
+**Process creation** requires loading code and static data of a program from the disk into the memory, and creating the address space of the process (including code, static data, heap and stack) in the physical memory.
+
+Some useful syscalls: 
+
+* All processes have unique process IDs, retrieved with the `getpid()` syscall.
+* `fork()` syscall copies a process (parent and child) and returns both.
+* `exec()` replaces an address space with a new program. 
+* `exit()` or `kill()` are used for process termination.
