@@ -100,4 +100,4 @@ This way, we can do something useful before actually running the child - at the 
 
 ###`p4.c`
 
-There is an array for each process in UNIX where all files are stored with unique indices named **file descriptors**. The first two indices are ```STDIN``` and `STDOUT`. When we call ```close(STDOUT_FILENO)```, we essentially close and make the standard output free. Next, we open ```./p4.output``` file, and unix automatically opens it on the first empty field in the . Now, this process will use this file instead of `STDOUT`. 
+There is an array for each process in UNIX where all files are stored with unique indices named **file descriptors**. The first two indices are `STDIN` and `STDOUT`. When we call `close(STDOUT_FILENO)`, we essentially close and make the standard output free. Next, we open `./p4.output` file, and unix automatically opens it on the first empty field in the . Now, this process will use this file instead of `STDOUT`. 
