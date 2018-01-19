@@ -89,7 +89,7 @@ No need to change blocking calls to nonblocking
 ####Disadvantage
 The cost of switching or creating threads is significantly costlier, since it is now a system call, as opposed to a regular function call which was the case in the user thread model.
 
-###Back to the Example
+###Better Server Model
 So, what if the **thread pool** model for the web server not the best option? Let's have as many threads as we have cores, and this way we can get rid of all the context switches.
 
 If non-blocking system calls are available, we can design an asynchronous model.
@@ -107,3 +107,9 @@ This is an **asynchronous model**
 * There is no need to use more threads
 
 This requires **callback** mechanisms and **event notification** support from the OS kernel.
+
+Events can be the arrival of a request, or an I/O complete event from the disk. The single thread will be an **event handler**.
+
+**node.js** uses this modern asynchronous feature. **Apache**, on the other hand, uses a thread pool method.
+
+**Web server example can't be found in textook.**
